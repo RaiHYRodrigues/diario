@@ -7,38 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:279935568439:android:28b03723b4de00afbd8db2",
+        "mobilesdk_app_id": "1:279935568439:android:5f7d13710522f817bd8db2",
         "android_client_info": {
           "package_name": "com.example.diario_de_campo"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "279935568439-563vridq7qji42la553gj81kk330io7q.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDANF6oMkzlXTQxJq-KCsYrWqapC8Y--24"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "279935568439-563vridq7qji42la553gj81kk330io7q.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:279935568439:android:4d69b1a5be95f4d6bd8db2",
-        "android_client_info": {
-          "package_name": "com.rai.yamasaki"
         }
       },
       "oauth_client": [

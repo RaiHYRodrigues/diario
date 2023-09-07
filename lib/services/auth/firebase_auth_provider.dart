@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../firebase_options.dart';
 import 'auth_exceptions.dart';
 import 'auth_user.dart';
 
@@ -22,7 +23,7 @@ class FirebaseAuthProvider {
         
       ));
     } else {
-      await Firebase.initializeApp();
+      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
     }
   }
 

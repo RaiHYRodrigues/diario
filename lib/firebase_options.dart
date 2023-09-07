@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDANF6oMkzlXTQxJq-KCsYrWqapC8Y--24',
-    appId: '1:279935568439:android:28b03723b4de00afbd8db2',
+    appId: '1:279935568439:android:5f7d13710522f817bd8db2',
     messagingSenderId: '279935568439',
     projectId: 'diario-de-campo-f67ef',
     storageBucket: 'diario-de-campo-f67ef.appspot.com',
