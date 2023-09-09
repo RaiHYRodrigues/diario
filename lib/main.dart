@@ -1,5 +1,6 @@
 import 'package:diario_de_campo/services/auth/firebase_auth_provider.dart';
 import 'package:diario_de_campo/views/home_view.dart';
+import 'package:diario_de_campo/views/login_view.dart';
 import 'package:diario_de_campo/views/register_view.dart';
 import 'package:flutter/material.dart';
 

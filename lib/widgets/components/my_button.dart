@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
@@ -11,16 +10,16 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
-      child: Container(
+      child: Ink(
         padding: const EdgeInsets.all(25),
-        margin: const EdgeInsets.symmetric(horizontal: 25),
+        width: 300,
         decoration: BoxDecoration(
           color: favoDark,
           borderRadius: BorderRadius.circular(8),
         ),
-        child:  Center(
+        child: Center(
           child: Text(
             title,
             style: const TextStyle(

@@ -1,3 +1,4 @@
+import 'package:diario_de_campo/views/login_view.dart';
 import 'package:flutter/material.dart';
 
 import '../services/auth/firebase_auth_provider.dart';
@@ -39,7 +40,7 @@ class _RegisterBodyState extends State<RegisterBody> {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding:  const EdgeInsets.symmetric(horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 25),
         child: Column(
           children: [
             const SizedBox(height: 50),
@@ -73,13 +74,22 @@ class _RegisterBodyState extends State<RegisterBody> {
             ),
             const SizedBox(height: 25),
             MyButton(
-                title: 'Criar Conta',
-                onTap: () async {
-                  await FirebaseAuthProvider().createUser(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  );
-                }),
+              title: 'Criar Conta',
+              onTap: () {
+               Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginView(), // Replace with your new page widget
+      ),
+    );
+              }
+            ),
+            // onTap: () async {
+            //   await FirebaseAuthProvider().createUser(
+            //     email: _emailController.text,
+            //     password: _passwordController.text,
+            //   );
+            // }),
             const SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),

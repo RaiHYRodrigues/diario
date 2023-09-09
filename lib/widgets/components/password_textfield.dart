@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../utilities/colors.dart';
@@ -22,8 +21,9 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+    return Container(
+      color: Colors.transparent,
+      width: 300,
       child: TextField(
         autocorrect: false,
         enableSuggestions: false,

@@ -1,4 +1,4 @@
-
+import 'package:diario_de_campo/views/register_view.dart';
 import 'package:flutter/material.dart';
 
 import '../utilities/colors.dart';
@@ -19,7 +19,6 @@ class LoginView extends StatelessWidget {
     );
   }
 }
-
 
 class LoginBody extends StatelessWidget {
   LoginBody({super.key});
@@ -73,7 +72,15 @@ class LoginBody extends StatelessWidget {
             const SizedBox(height: 25),
             MyButton(
               title: "Entrar",
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        const RegisterView(), // Replace with your new page widget
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 50),
             Padding(
@@ -104,18 +111,9 @@ class LoginBody extends StatelessWidget {
             ),
             const SizedBox(height: 35),
             // google + apple sign in buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                // google button
-                SquareTile(imagePath: 'assets/google.png'),
+            const SquareTile(imagePath: 'assets/google.png'),
 
-                SizedBox(width: 25),
-
-                // apple button
-                SquareTile(imagePath: 'assets/apple.png')
-              ],
-            ),
+            const SizedBox(width: 25),
             const SizedBox(height: 35),
             // not a member? register now
             Row(
