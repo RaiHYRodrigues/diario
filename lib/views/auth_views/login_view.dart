@@ -1,11 +1,11 @@
-import 'package:diario_de_campo/views/register_view.dart';
+import 'package:diario_de_campo/views/auth_views/register_view.dart';
 import 'package:flutter/material.dart';
 
-import '../utilities/colors.dart';
-import '../widgets/components/email_textfield.dart';
-import '../widgets/components/my_button.dart';
-import '../widgets/components/password_textfield.dart';
-import '../widgets/components/square_tile.dart';
+import '../../utilities/colors.dart';
+import '../../widgets/components/email_textfield.dart';
+import '../../widgets/components/my_button.dart';
+import '../../widgets/components/password_textfield.dart';
+import '../../widgets/components/square_tile.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -46,12 +46,11 @@ class LoginBody extends StatelessWidget {
             const SizedBox(height: 20),
             EmailTextField(
               controller: emailController,
-              hintText: 'Email',
             ),
             const SizedBox(height: 10),
             PasswordTextField(
               controller: passwordController,
-              hintText: 'Senha',
+              hintText: 'senha',
             ),
             const SizedBox(height: 10),
             // forgot password?

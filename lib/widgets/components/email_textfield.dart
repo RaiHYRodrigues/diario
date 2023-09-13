@@ -4,12 +4,10 @@ import '../../utilities/colors.dart';
 
 class EmailTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
 
   const EmailTextField({
     super.key,
     required this.controller,
-    required this.hintText,
   });
 
   @override
@@ -31,7 +29,7 @@ class EmailTextField extends StatelessWidget {
             ),
             fillColor: Colors.grey[200],
             filled: true,
-            hintText: hintText,
+            hintText: "email",
             hintStyle: TextStyle(color: Colors.grey[500])),
       ),
     );

@@ -8,15 +8,15 @@ class PasswordTextField extends StatefulWidget {
 
   const PasswordTextField({
     Key? key,
-    required this.controller,
     required this.hintText,
+    required this.controller,
   }) : super(key: key);
 
   @override
-  _PasswordTextFieldState createState() => _PasswordTextFieldState();
+  PasswordTextFieldState createState() => PasswordTextFieldState();
 }
 
-class _PasswordTextFieldState extends State<PasswordTextField> {
+class PasswordTextFieldState extends State<PasswordTextField> {
   bool _obscureText = true;
 
   @override

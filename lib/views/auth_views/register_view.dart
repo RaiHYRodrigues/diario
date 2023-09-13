@@ -1,12 +1,12 @@
-import 'package:diario_de_campo/views/login_view.dart';
 import 'package:flutter/material.dart';
 
-import '../services/auth/firebase_auth_provider.dart';
-import '../utilities/colors.dart';
-import '../widgets/components/email_textfield.dart';
-import '../widgets/components/my_button.dart';
-import '../widgets/components/password_textfield.dart';
-import '../widgets/components/square_tile.dart';
+import '../../utilities/colors.dart';
+import '../../widgets/components/email_textfield.dart';
+import '../../widgets/components/my_button.dart';
+import '../../widgets/components/password_textfield.dart';
+import '../../widgets/components/square_tile.dart';
+
+import 'login_view.dart';
 
 class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
@@ -16,7 +16,7 @@ class RegisterView extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.grey[300],
-        body: const SafeArea(
+        body: SafeArea(
           child: SingleChildScrollView(child: RegisterBody()),
         ),
       ),
@@ -24,16 +24,13 @@ class RegisterView extends StatelessWidget {
   }
 }
 
-class RegisterBody extends StatefulWidget {
-  const RegisterBody({super.key});
+class RegisterBody extends StatelessWidget {
+   RegisterBody({super.key});
 
-  @override
-  State<RegisterBody> createState() => _RegisterBodyState();
-}
-
-class _RegisterBodyState extends State<RegisterBody> {
   final _emailController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
   final _confirmPasswordController = TextEditingController();
 
   @override
@@ -60,7 +57,7 @@ class _RegisterBodyState extends State<RegisterBody> {
             //Login com email e senha
             EmailTextField(
               controller: _emailController,
-              hintText: 'Email',
+              
             ),
             const SizedBox(height: 10),
             PasswordTextField(
@@ -74,16 +71,16 @@ class _RegisterBodyState extends State<RegisterBody> {
             ),
             const SizedBox(height: 25),
             MyButton(
-              title: 'Criar Conta',
-              onTap: () {
-               Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LoginView(), // Replace with your new page widget
-      ),
-    );
-              }
-            ),
+                title: 'Criar Conta',
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const LoginView(), // Replace with your new page widget
+                    ),
+                  );
+                }),
             // onTap: () async {
             //   await FirebaseAuthProvider().createUser(
             //     email: _emailController.text,
@@ -124,9 +121,7 @@ class _RegisterBodyState extends State<RegisterBody> {
               children: [
                 //google button
                 GestureDetector(
-                    onTap: () async {
-                      await FirebaseAuthProvider().signInWithGoogle();
-                    },
+                    onTap: () async {},
                     child: const SquareTile(imagePath: 'assets/google.png')),
               ],
             ),

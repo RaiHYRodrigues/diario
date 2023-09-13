@@ -1,7 +1,6 @@
 import 'package:diario_de_campo/services/auth/firebase_auth_provider.dart';
-import 'package:diario_de_campo/views/home_view.dart';
-import 'package:diario_de_campo/views/login_view.dart';
-import 'package:diario_de_campo/views/register_view.dart';
+import 'package:diario_de_campo/views/auth_views/forgot_pwd.dart';
+
 import 'package:flutter/material.dart';
 
 void main() async {
@@ -16,6 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeView());
+    return const MaterialApp(home: ForgotPwdView());
   }
 }

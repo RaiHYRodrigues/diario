@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:diario_de_campo/utilities/colors.dart';
 import 'package:diario_de_campo/widgets/square_tile_button.dart';
 import 'package:flutter/material.dart';
@@ -12,18 +14,18 @@ class HomeView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 2,
-        toolbarHeight: 150,
+        toolbarHeight: 130,
         backgroundColor: Colors.grey[200],
         title: Center(
           child: Container(
+            height: 60,
             child: Image.asset('assets/logo.png'),
-            height: 80,
           ),
         ),
       ),
-      body: const HomeBody(),
+      body: const SafeArea(child: SingleChildScrollView(child: HomeBody())),
       bottomNavigationBar: Container(
-        height: 120,
+        height: 100,
         child: BottomNavigationBar(
           currentIndex: 0,
           fixedColor: favoLight,
@@ -31,7 +33,7 @@ class HomeView extends StatelessWidget {
           backgroundColor: Colors.grey[200],
           type: BottomNavigationBarType.fixed,
           elevation: 2,
-          iconSize: 50,
+          iconSize: 40,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

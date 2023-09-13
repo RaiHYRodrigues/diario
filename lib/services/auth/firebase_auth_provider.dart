@@ -10,6 +10,15 @@ import 'auth_exceptions.dart';
 import 'auth_user.dart';
 
 class FirebaseAuthProvider {
+  AuthUser? get currentUser {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return AuthUser.fromFirebase(user);
+    } else {
+      return null;
+    }
+  }
+
   Future<void> initialize() async {
     if (kIsWeb) {
       await Firebase.initializeApp(
@@ -20,23 +29,14 @@ class FirebaseAuthProvider {
         projectId: 'diario-de-campo-f67ef',
         authDomain: 'diario-de-campo-f67ef.firebaseapp.com',
         storageBucket: 'diario-de-campo-f67ef.appspot.com',
-        
       ));
     } else {
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform);
     }
   }
 
-  AuthUser? get currentUser {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      return AuthUser.fromFirebase(user);
-    } else {
-      return null;
-    }
-  }
-
-  Future<AuthUser> createUser({
+  Future<AuthUser> register({
     required String email,
     required String password,
   }) async {
@@ -94,7 +94,7 @@ class FirebaseAuthProvider {
     }
   }
 
-  Future<AuthUser> signInWithGoogle() async {
+  Future<AuthUser> googleSignIn() async {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
     final GoogleSignInAuthentication? googleAuth =
         await googleUser?.authentication;
@@ -113,25 +113,7 @@ class FirebaseAuthProvider {
   }
 }
 
-Future<void> logOut() async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    await FirebaseAuth.instance.signOut();
-  } else {
-    throw UserNotLoggedInAuthException();
-  }
-}
-
-Future<void> sendEmailVerification() async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    await user.sendEmailVerification();
-  } else {
-    throw UserNotLoggedInAuthException();
-  }
-}
-
-Future<void> sendPasswordReset({required String toEmail}) async {
+Future<void> forgotPassword({required String toEmail}) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: toEmail);
   } on FirebaseAuthException catch (e) {
@@ -145,5 +127,14 @@ Future<void> sendPasswordReset({required String toEmail}) async {
     }
   } catch (_) {
     throw GenericAuthException();
+  }
+}
+
+Future<void> logOut() async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await FirebaseAuth.instance.signOut();
+  } else {
+    throw UserNotLoggedInAuthException();
   }
 }
