@@ -1,9 +1,15 @@
 // ignore_for_file: sized_box_for_whitespace
 
+import 'package:diario_de_campo/services/auth/bloc/auth_event.dart';
+import 'package:diario_de_campo/services/auth/firebase_auth_provider.dart';
 import 'package:diario_de_campo/utilities/colors.dart';
+import 'package:diario_de_campo/widgets/components/my_button.dart';
 import 'package:diario_de_campo/widgets/square_tile_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../services/auth/bloc/auth_bloc.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -106,6 +112,11 @@ class HomeBody extends StatelessWidget {
             ),
           ],
         ),
+        MyButton(
+            onTap: () {
+              context.read<AuthBloc>().add(const AuthEventLogOut());
+            },
+            title: "LogOut")
       ],
     );
   }

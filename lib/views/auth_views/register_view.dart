@@ -1,5 +1,8 @@
+import 'package:diario_de_campo/services/auth/bloc/auth_event.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../services/auth/bloc/auth_bloc.dart';
 import '../../utilities/colors.dart';
 import '../../widgets/components/email_textfield.dart';
 import '../../widgets/components/my_button.dart';
@@ -25,7 +28,7 @@ class RegisterView extends StatelessWidget {
 }
 
 class RegisterBody extends StatelessWidget {
-   RegisterBody({super.key});
+  RegisterBody({super.key});
 
   final _emailController = TextEditingController();
 
@@ -57,7 +60,6 @@ class RegisterBody extends StatelessWidget {
             //Login com email e senha
             EmailTextField(
               controller: _emailController,
-              
             ),
             const SizedBox(height: 10),
             PasswordTextField(
@@ -73,6 +75,11 @@ class RegisterBody extends StatelessWidget {
             MyButton(
                 title: 'Criar Conta',
                 onTap: () {
+                  final email = _emailController.text;
+                  final password = _passwordController.text;
+                  context
+                      .read<AuthBloc>()
+                      .add(AuthEventRegister(email, password));
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -81,51 +88,9 @@ class RegisterBody extends StatelessWidget {
                     ),
                   );
                 }),
-            // onTap: () async {
-            //   await FirebaseAuthProvider().createUser(
-            //     email: _emailController.text,
-            //     password: _passwordController.text,
-            //   );
-            // }),
+
             const SizedBox(height: 50),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Row(
-                children: const [
-                  Expanded(
-                    child: Divider(
-                      thickness: 0.5,
-                      color: favoDark,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: Text(
-                      'Ou continue com',
-                      style: TextStyle(color: favoDark),
-                    ),
-                  ),
-                  Expanded(
-                    child: Divider(
-                      thickness: 0.5,
-                      color: favoDark,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 35),
-            // Login Com google e Apple.
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                //google button
-                GestureDetector(
-                    onTap: () async {},
-                    child: const SquareTile(imagePath: 'assets/google.png')),
-              ],
-            ),
-            const SizedBox(height: 35),
+
             // not a member? register now
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -135,11 +100,22 @@ class RegisterBody extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[700]),
                 ),
                 const SizedBox(width: 4),
-                const Text(
-                  'Entrar',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const LoginView(), // Replace with your new page widget
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Entrar',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],

@@ -111,30 +111,30 @@ class FirebaseAuthProvider {
       throw GoogleSignInAuthException();
     }
   }
-}
 
-Future<void> forgotPassword({required String toEmail}) async {
-  try {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: toEmail);
-  } on FirebaseAuthException catch (e) {
-    switch (e.code) {
-      case 'firebase_auth/invalid-email':
-        throw InvalidEmailAuthException();
-      case 'firebase_auth/user-not-found':
-        throw UserNotFoundAuthException();
-      default:
-        throw GenericAuthException();
+  Future<void> forgotPassword({required String toEmail}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: toEmail);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'firebase_auth/invalid-email':
+          throw InvalidEmailAuthException();
+        case 'firebase_auth/user-not-found':
+          throw UserNotFoundAuthException();
+        default:
+          throw GenericAuthException();
+      }
+    } catch (_) {
+      throw GenericAuthException();
     }
-  } catch (_) {
-    throw GenericAuthException();
   }
-}
 
-Future<void> logOut() async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    await FirebaseAuth.instance.signOut();
-  } else {
-    throw UserNotLoggedInAuthException();
+  Future<void> logOut() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await FirebaseAuth.instance.signOut();
+    } else {
+      throw UserNotLoggedInAuthException();
+    }
   }
 }

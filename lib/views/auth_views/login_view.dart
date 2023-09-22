@@ -1,6 +1,9 @@
+import 'package:diario_de_campo/services/auth/bloc/auth_event.dart';
 import 'package:diario_de_campo/views/auth_views/register_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../services/auth/bloc/auth_bloc.dart';
 import '../../utilities/colors.dart';
 import '../../widgets/components/email_textfield.dart';
 import '../../widgets/components/my_button.dart';
@@ -72,13 +75,9 @@ class LoginBody extends StatelessWidget {
             MyButton(
               title: "Entrar",
               onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const RegisterView(), // Replace with your new page widget
-                  ),
-                );
+                final email = emailController.text;
+                final password = passwordController.text;
+                context.read<AuthBloc>().add(AuthEventLogIn(email, password));
               },
             ),
             const SizedBox(height: 50),
@@ -110,7 +109,11 @@ class LoginBody extends StatelessWidget {
             ),
             const SizedBox(height: 35),
             // google + apple sign in buttons
-            const SquareTile(imagePath: 'assets/google.png'),
+            InkWell(
+                onTap: () {
+                  context.read<AuthBloc>().add(const AuthEventGoogleSignIn());
+                },
+                child: const SquareTile(imagePath: 'assets/google.png')),
 
             const SizedBox(width: 25),
             const SizedBox(height: 35),
@@ -123,11 +126,22 @@ class LoginBody extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[700]),
                 ),
                 const SizedBox(width: 4),
-                const Text(
-                  'Criar conta',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.bold,
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const RegisterView(), // Replace with your new page widget
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Criar conta',
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
